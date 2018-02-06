@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Commands\" />
     <Folder Include="Queries\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
@@ -16,7 +15,6 @@
     <PackageReference Include="MassTransit" Version="4.1.0.1406-develop" />
     <PackageReference Include="MassTransit.RabbitMQ" Version="4.1.0.1406-develop" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.3" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.1" />
     <PackageReference Include="RabbitMQ.Client" Version="5.1.0-pre2" />
     <PackageReference Include="Serilog.AspNetCore" Version="2.1.1-dev-00022" />
     <PackageReference Include="Serilog.Settings.Configuration" Version="2.4.1-dev-00070" />
