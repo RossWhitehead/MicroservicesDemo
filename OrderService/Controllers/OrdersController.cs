@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+using Messages;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OrderService.Data;
@@ -93,7 +93,14 @@ namespace OrderService.Controllers
                 return BadRequest(ModelState);
             }
 
-            orderSaga.CreatePendingOrder(order);
+            var orderCreated = new OrderCreated
+            {
+                SagaId = new Guid(),
+                Status = Messages.OrderStatus.Requested,
+                LastUpdated = DateTime.UtcNow
+            };
+
+            orderSaga.CreatePendingOrder(orderCreated);
 
             return CreatedAtAction("GetOrder", new { id = order.OrderId }, order);
         }

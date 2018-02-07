@@ -2,7 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
+using CustomerService.Consumers;
 using CustomerService.Receivers;
+using MassTransit;
+using MassTransit.Util;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -23,9 +28,10 @@ namespace CustomerService
         }
 
         public IConfiguration Configuration { get; }
+        public IContainer ApplicationContainer { get; private set; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
 
@@ -40,11 +46,38 @@ namespace CustomerService
 
             services.AddSingleton<Serilog.ILogger>(logger);
 
-            services.AddSingleton<IHostedService, Receiver>();
+            // Add Autofac container and register MassTransit
+            var builder = new ContainerBuilder();
+
+            builder.Register(c =>
+            {
+                return Bus.Factory.CreateUsingRabbitMq(sbc => {
+                    var host = sbc.Host("localhost", "/", h =>
+                    {
+                        h.Username("guest");
+                        h.Password("guest");
+                    });
+
+                    sbc.ReceiveEndpoint(host, "OrderCreated", e =>
+                    {
+                        e.Consumer<OrderCreatedConsumer>();
+                    });
+                });
+            })
+                .As<IBusControl>()
+                .As<IPublishEndpoint>()
+                .SingleInstance();
+
+            builder.Populate(services);
+
+            this.ApplicationContainer = builder.Build();
+
+            // Create the IServiceProvider based on the container.
+            return new AutofacServiceProvider(this.ApplicationContainer);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IApplicationLifetime appLifetime)
         {
             if (env.IsDevelopment())
             {
@@ -61,6 +94,15 @@ namespace CustomerService
             });
 
             loggerFactory.AddSerilog();
+
+            //resolve the bus from the container
+            var bus = this.ApplicationContainer.Resolve<IBusControl>();
+
+            //start the bus
+            var busHandle = TaskUtil.Await(() => bus.StartAsync());
+
+            //register an action to call when the application is shutting down
+            appLifetime.ApplicationStopping.Register(() => busHandle.Stop());
         }
     }
 }
