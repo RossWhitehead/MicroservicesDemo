@@ -4,14 +4,26 @@ using System.Linq;
 using System.Threading.Tasks;
 using MassTransit;
 using Messages;
+using Serilog;
 
 namespace CustomerService.Consumers
 {
     public class OrderCreatedConsumer : IConsumer<OrderCreated>
     {
+        public OrderCreatedConsumer()
+        {
+        }
+
         public Task Consume(ConsumeContext<OrderCreated> context)
         {
-            throw new NotImplementedException();
+            var creditAllocated = new CreditAllocated
+            {
+                SagaId = context.Message.SagaId               
+            };
+
+            context.Publish<CreditAllocated>(creditAllocated);
+
+            return Task.CompletedTask;
         }
     }
 }

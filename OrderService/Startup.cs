@@ -13,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using OrderService.Consumers;
 using OrderService.Data;
 using OrderService.Sagas;
 using Serilog;
@@ -61,13 +62,25 @@ namespace OrderService
 
             builder.Register(c =>
             {
-                return Bus.Factory.CreateUsingRabbitMq(sbc =>
-                    sbc.Host("localhost", "/", h =>
+                return Bus.Factory.CreateUsingRabbitMq(sbc => {
+                    var host = sbc.Host("localhost", "/", h =>
                     {
                         h.Username("guest");
                         h.Password("guest");
-                    })
-                );
+                    });
+
+                    sbc.ReceiveEndpoint(host, "CreatedAllocated", e =>
+                    {
+                        e.Consumer<CreditAllocatedConsumer>();
+                    });
+
+                    sbc.ReceiveEndpoint(host, "CreatedAllocationFailed", e =>
+                    {
+                        e.Consumer<CreditAllocationFailedConsumer>();
+                    });
+
+                    sbc.UseSerilog(logger);
+                });
             })
                 .As<IBusControl>()
                 .As<IPublishEndpoint>()

@@ -62,6 +62,8 @@ namespace CustomerService
                     {
                         e.Consumer<OrderCreatedConsumer>();
                     });
+
+                    sbc.UseSerilog(logger);
                 });
             })
                 .As<IBusControl>()

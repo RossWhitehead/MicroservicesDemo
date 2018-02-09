@@ -1,0 +1,19 @@
+2018-02-08 15:12:27.583 +00:00 [Error] RabbitMQ Connect Failed: "Broker unreachable: guest@localhost:5672/"
+2018-02-08 15:12:27.583 +00:00 [Error] RabbitMQ Connect Failed: "Broker unreachable: guest@localhost:5672/"
+2018-02-08 15:12:35.910 +00:00 [Error] RabbitMQ Connect Failed: "Broker unreachable: guest@localhost:5672/"
+2018-02-08 15:12:35.910 +00:00 [Error] RabbitMQ Connect Failed: "Broker unreachable: guest@localhost:5672/"
+2018-02-08 15:12:47.598 +00:00 [Error] RabbitMQ Connect Failed: "Broker unreachable: guest@localhost:5672/"
+2018-02-08 15:12:47.598 +00:00 [Error] RabbitMQ Connect Failed: "Broker unreachable: guest@localhost:5672/"
+2018-02-08 15:13:19.341 +00:00 [Error] RabbitMQ Connect Failed: "Broker unreachable: guest@localhost:5672/"
+2018-02-08 15:13:21.345 +00:00 [Error] RabbitMQ Connect Failed: "Broker unreachable: guest@localhost:5672/"
+2018-02-08 15:13:27.591 +00:00 [Error] RabbitMQ Connect Failed: "Broker unreachable: guest@localhost:5672/"
+2018-02-08 15:13:29.607 +00:00 [Error] RabbitMQ Connect Failed: "Broker unreachable: guest@localhost:5672/"
+2018-02-08 15:13:39.263 +00:00 [Error] RabbitMQ Connect Failed: "Broker unreachable: guest@localhost:5672/"
+2018-02-08 15:13:41.284 +00:00 [Error] RabbitMQ Connect Failed: "Broker unreachable: guest@localhost:5672/"
+2018-02-08 16:27:13.645 +00:00 [Error] R-FAULT rabbitmq://localhost/OrderCreated N/A Messages.OrderCreated CustomerService.Consumers.OrderCreatedConsumer(00:01:24.6194590) Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at MassTransit.Pipeline.ConsumerFactories.DefaultConstructorConsumerFactory`1.<Send>d__0`1.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at MassTransit.Pipeline.Filters.ConsumerMessageFilter`2.<GreenPipes-IFilter<MassTransit-ConsumeContext<TMessage>>-Send>d__4.MoveNext()

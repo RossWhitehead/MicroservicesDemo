@@ -57,7 +57,9 @@ namespace OrderService.Sagas
             //    logger.Information("Create pending order event published.");
             //}
 
-            publisher.Publish<Order>(orderCreated);
+            publisher.Publish<OrderCreated>(orderCreated);
+
+            logger.Information("Create pending order event published.");
         }
 
         public void DebitAccount()

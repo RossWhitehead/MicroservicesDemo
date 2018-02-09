@@ -1,0 +1,11 @@
+2018-02-08 14:40:32.228 +00:00 [Information] Create pending order event published.
+2018-02-08 15:12:27.548 +00:00 [Error] RabbitMQ Connect Failed: "Broker unreachable: guest@localhost:5672/"
+2018-02-08 15:12:35.064 +00:00 [Error] RabbitMQ Connect Failed: "Broker unreachable: guest@localhost:5672/"
+2018-02-08 15:12:45.125 +00:00 [Error] RabbitMQ Connect Failed: "Broker unreachable: guest@localhost:5672/"
+2018-02-08 15:13:00.997 +00:00 [Error] RabbitMQ Connect Failed: "Broker unreachable: guest@localhost:5672/"
+2018-02-08 15:13:33.013 +00:00 [Error] RabbitMQ Connect Failed: "Broker unreachable: guest@localhost:5672/"
+2018-02-08 16:22:37.616 +00:00 [Information] Create pending order event published.
+2018-02-08 16:23:20.376 +00:00 [Information] Create pending order event published.
+2018-02-08 16:25:48.232 +00:00 [Information] Create pending order event published.
+2018-02-08 19:40:38.293 +00:00 [Information] Create pending order event published.
+2018-02-08 19:42:09.928 +00:00 [Information] Create pending order event published.
