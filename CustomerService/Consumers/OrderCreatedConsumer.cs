@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MassTransit;
-using Messages;
+using Common.Messages;
 using Serilog;
 
 namespace CustomerService.Consumers

@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Messages;
+using Common.Enums;
+using Common.Messages;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OrderService.Data;
@@ -96,7 +97,7 @@ namespace OrderService.Controllers
             var orderCreated = new OrderCreated
             {
                 SagaId = new Guid(),
-                Status = Messages.OrderStatus.Requested,
+                Status = OrderStatus.Requested,
                 LastUpdated = DateTime.UtcNow
             };
 

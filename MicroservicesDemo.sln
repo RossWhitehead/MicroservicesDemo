@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.0
+VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderService", "OrderService\OrderService.csproj", "{2DB93142-998F-4620-B4CC-1E653C4841F8}"
 EndProject
@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerService", "Customer
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderConsole", "OrderConsole\OrderConsole.csproj", "{BA600B20-605D-4B9B-8B1F-E44AF1534B72}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Messages", "Messages\Messages.csproj", "{E003FE28-7C93-49D7-9577-2EDE1F98CE90}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "Messages\Common.csproj", "{E003FE28-7C93-49D7-9577-2EDE1F98CE90}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,4 +1,4 @@
-﻿using Messages;
+﻿using Common.Messages;
 using OrderService.Data;
 
 namespace OrderService.Sagas

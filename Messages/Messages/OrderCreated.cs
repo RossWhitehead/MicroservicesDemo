@@ -1,6 +1,7 @@
 ﻿using System;
+using Common.Enums;
 
-namespace Messages
+namespace Common.Messages
 {
     public class OrderCreated
     {

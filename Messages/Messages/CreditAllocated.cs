@@ -2,12 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Messages
+namespace Common.Messages
 {
-    public class CreditAllocationFailed
+    public class CreditAllocated
     {
         public Guid SagaId { get; set; }
-
-        public string FailureReason { get; set; }
     }
 }
